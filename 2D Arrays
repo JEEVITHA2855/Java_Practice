@@ -1,0 +1,333 @@
+Diagonals are zero 
+
+
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner in=new Scanner (System.in);
+	    int m=in.nextInt();
+	    int n=in.nextInt();
+	int[][] arr= new int[m][n];
+	for (int i=0;i<m;i++){
+	    for (int j=0;j<n;j++){
+	        arr[i][j]=in.nextInt();
+	    }
+	}
+	int sum=0;
+	
+	for (int i=0;i<m;i++){
+	    for (int j=0;j<n;j++){
+	        if (i==j){
+	            arr[i][j]=0;
+	        }
+	      System.out.print(arr[i][j]+" ");
+	    }
+	    System.out.println();
+	}
+	
+	}
+}
+
+
+
+
+
+Sum of row, max sum
+
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner in=new Scanner (System.in);
+	    int m=in.nextInt();
+	    int n=in.nextInt();
+	int[][] arr= new int[m][n];
+	for (int i=0;i<m;i++){
+	    for (int j=0;j<n;j++){
+	        arr[i][j]=in.nextInt();
+	    }
+	}
+int max=0;
+	
+	for (int i=0;i<m;i++){
+	    int sum=0;
+	    for (int j=0;j<n;j++){
+	       sum=sum+arr[i][j];
+	       
+	    }
+	    System.out.println("Sum of row : " + sum);
+	    
+	
+	if (sum>max){
+	    max=sum;
+	}}
+	System.out.println("Maximum sum: "+ max);
+	      
+	    }
+	}
+
+
+
+Matrix rotation by 90 degree
+
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner in=new Scanner (System.in);
+	    int m=in.nextInt();
+	    int n=in.nextInt();
+	int[][] arr= new int[m][n];
+	for (int i=0;i<m;i++){
+	    for (int j=0;j<n;j++){
+	        arr[i][j]=in.nextInt();
+	    }
+	}
+int[][] x = new int[m][n];
+	
+	for (int i=0;i<m;i++){
+	
+	    for (int j=0;j<n;j++){
+	       x[j][n-1-i]=arr[i][j];
+	       
+	    
+	    }}
+	    	for (int i=0;i<m;i++){
+	
+	    for (int j=0;j<n;j++){
+	   
+	 
+	    System.out.print(x[i][j]+ " ");}
+	    
+	    
+	  System.out.println();}
+	    }
+	}
+
+
+Row col zero
+
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner in=new Scanner (System.in);
+	    int m=in.nextInt();
+	    int n=in.nextInt();
+	int[][] arr= new int[m][n];
+	
+	for (int i=0;i<m;i++){
+	    for (int j=0;j<n;j++){
+	        arr[i][j]=in.nextInt();
+	    }
+	}
+	boolean r[]=new boolean[m];
+	boolean c[]=new boolean [n];
+	
+	 for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (arr[i][j] == 0) {
+                    r[i] = true;
+                    c[j] = true;
+                }
+            }
+        }
+
+        for (int i = 0; i <m; i++) {
+            for (int j = 0; j <n; j++) {
+                if (r[i] || c[j]) {
+                    arr[i][j] = 0;
+                }
+            }
+        }
+        for (int i=0;i<m;i++){
+            for (int j=0;j<n;j++){
+                System.out.print(arr[i][j]+" ");
+            }
+            System.out.println();
+        }
+        
+        
+    }
+}
+
+
+
+Row and col exchange
+
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner in=new Scanner (System.in);
+	    int m=in.nextInt();
+	    int n=in.nextInt();
+	int[][] arr= new int[m][n];
+	
+	for (int i=0;i<m;i++){
+	    for (int j=0;j<n;j++){
+	        arr[i][j]=in.nextInt();
+	    }
+	}
+	int f=0,l=n-1;
+	
+	for (int j=0;j<n;j++){
+	    int temp=arr[f][j];
+	    arr[f][j]=arr[l][j];
+	    arr[l][j]=temp;
+	    }
+	  	for (int i=0;i<m;i++){
+	    for (int j=0;j<n;j++){
+	   System.out.print(arr[i][j]+" ");
+	    }
+	  	System.out.println();
+	  	}
+	    
+	}
+    
+}  
+	    
+	
+
+Spiral
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int m = in.nextInt(); 
+        int n = in.nextInt(); 
+
+        int[][] arr = new int[m][n];
+
+        int v = 1;
+        int top = 0, bottom = m - 1, left = 0, right = n - 1;
+
+        while (top <= bottom && left <= right) {
+         
+            for (int i = left; i <= right; i++) {
+                arr[top][i] = v++;
+            }
+            top++;
+
+            for (int i = top; i <= bottom; i++) {
+                arr[i][right] = v++;
+            }
+            right--;
+
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) {
+                    arr[bottom][i] = v++;
+                }
+                bottom--;
+            }
+
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    arr[i][left] = v++;
+                }
+                left++;
+            }
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+Min in row max in col - saddle point
+
+Identity matrix
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+       
+        int n = in.nextInt(); 
+        int m = in.nextInt(); 
+
+        int[][] matrix = new int[n][n];
+        int f=0;
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                matrix [i][j]=in.nextInt();}}
+                
+                
+                boolean isIdentity = true;
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == j && matrix[i][j] != 1) {
+                    isIdentity = false;
+                    break;
+                }
+                if (i != j && matrix[i][j] != 0) {
+                    isIdentity = false;
+                    break;
+                }
+            }
+            if (!isIdentity) break;
+        }
+
+        if (isIdentity) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+    }
+}
+Saddle point 
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+       
+        int n = in.nextInt(); 
+        int m = in.nextInt(); 
+
+        int[][] arr = new int[n][n];
+     
+        
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                arr [i][j]=in.nextInt();
+                
+            }
+            
+        }
+   boolean f =false;
+        for (int i = 0; i < m; i++) {
+            int min=0;
+            for (int j = 1; j < n; j++) {
+                if (arr[i][j]<arr[i][min]){
+                    min=j;
+                }
+                boolean sad =true;
+                for (int k=0;k<n;k++){
+                    if (arr[k][min]> arr[i][min]){
+                        sad=false;
+                        break;
+                    }
+                }
+                if (sad)
+                {
+                    System.out.print(arr[i][min]);
+                    f=true;
+                }}
+                }
+    }
+}
+                    
+                
+               
+
+
+ 
