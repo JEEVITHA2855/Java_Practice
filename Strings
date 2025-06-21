@@ -1,0 +1,367 @@
+1) Number of upper,lower, digit, special
+
+import  java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner in= new Scanner (System.in);
+		String s=in.nextLine();
+		int upper=0,lower=0,special=0,digit=0;
+		
+		for (int i=0;i<s.length();i++){
+		    char c = s.charAt(i);
+		    if (Character.isUpperCase(c)){
+		        upper++;
+		        
+		    }
+		    else if (Character.isLowerCase(c)){
+		            lower++;
+		        }
+		        else if (Character.isDigit(c)){
+		            digit++;
+		        }
+		        else{
+		            special++;
+		        }
+		    }
+		    System.out.println(upper);
+		    System.out.println(lower);
+		    System.out.println(digit);
+		    System.out.println(special);
+		}
+	}
+
+
+
+2) Reverse string
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+
+        StringBuilder x = new StringBuilder(s);
+        x.reverse();  
+        System.out.println("Reversed string: " + x.toString());
+    }
+}
+
+3) Palindrome
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+        StringBuilder x = new StringBuilder(s);
+        String rev=x.reverse().toString();
+       
+       
+       
+        if (s.equals(rev)){
+            System.out.print("Palindrome");
+        }
+        else{
+            System.out.println("Nope");
+        }
+       
+    }
+}
+
+4) Vowels, consonants count 
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+        int v = 0, c = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+
+            if (Character.isLetter(ch)) { 
+                ch = Character.toLowerCase(ch);
+                if (isVowel(ch)) {
+                    v++;
+                } else {
+                    c++;
+                }
+            }
+        }
+
+        System.out.println("Vowels: " + v);
+        System.out.println("Consonants: " + c);
+    }
+
+    public static boolean isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    }
+}
+
+
+5) Anagram
+
+import java.util.Scanner;
+import java.util.Arrays;
+public class Main{
+    public static void main(String[]args){
+    Scanner sc = new Scanner(System.in);
+    String s1 = sc.nextLine().toLowerCase().replaceAll(" ","");
+    String s2 = sc.nextLine().toLowerCase().replaceAll(" ","");
+    if (s1.length()!=s2.length()){
+        System.out.println("No");
+    }else{
+        char[] sa1 = s1.toCharArray();
+        char[] sa2 = s2.toCharArray();
+        Arrays.sort(sa1);
+        Arrays.sort(sa2);
+        if(Arrays.equals(sa1,sa2)){
+            System.out.println("Anagram");
+        }else{
+            System.out.println("No");
+        }
+    }
+    
+}}
+
+
+6) Roman To INT
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+        
+        int prev=0,sum=0,diff=0;
+        for (int i=s.length()-1;i>=0;i--){
+            char ch=s.charAt(i);
+        int curr=0;
+         
+         switch (ch){
+            case 'I' : curr=1 ; break;
+            case 'V' : curr=5 ; break;
+            case 'X' : curr=10 ; break;
+            case 'L' : curr=50 ; break;
+            case 'C' : curr=100 ; break;
+            case 'D' : curr=500 ; break;
+            case 'M' : curr=1000 ; break;
+         }
+        
+         if (curr>=prev){
+             sum+=curr;
+         }
+         else{
+             sum-=curr;
+         }
+            prev=curr;
+        }
+         System.out.print(sum);}}
+        
+
+7) IceCream
+
+
+public class Main
+{
+	public static void main(String[] args) {
+		if(System.out.printf("Ice")==null){
+PrintStream - compiler run panidum w/o checking for conditions
+		    
+		}else{
+		    System.out.printf("Cream");
+		}
+	}
+}
+
+8) Remove duplicates (HashSet)
+
+import java.util.Scanner;
+import java.util.HashSet;
+public class Main{
+    public static void main(String[]args){
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    char a[] =s.toCharArray();
+    HashSet<Character> x = new HashSet<>();
+    for(char i : a){
+        x.add(i);
+        }
+    System.out.print(x);
+}
+}
+
+(OR) array not used
+
+import java.util.Scanner;
+import java.util.HashSet;
+
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+
+        HashSet<Character> x = new HashSet<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            x.add(s.charAt(i));  // directly use char from string
+        }
+
+        System.out.println(x);  // prints unique chars (unordered)
+    }
+}
+
+(OR) ordered using linkedhashset
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+
+        LinkedHashSet<Character> x = new LinkedHashSet<>();
+
+        for(char c : s.toCharArray()) {
+            x.add(c);
+        }
+
+
+        StringBuilder sb = new StringBuilder();
+        for(char c : x) {
+            sb.append(c);
+        }
+
+
+        System.out.println("Without duplicates: " + sb.toString());
+    }
+}
+
+8) Reverse each word in a sentence
+
+import java.util.Scanner;
+import java.util.HashSet;
+public class Main{
+    public static void main(String[]args){
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    
+    String x[] = s.split(" ");
+    for(int i=0;i<x.length;i++){
+        String z=x[i];
+        System.out.println(rev(z)+" ");
+    }
+}
+public static String rev(String s)
+{
+    StringBuilder x= new StringBuilder ();
+    for(int i=0;i<s.length;i++){
+        String z=x[i];
+        x.append(s.charAt(0));
+    }return x.reverse().toString();
+}}
+
+9) Anagram
+
+import java.util.Scanner;
+import java.util.Arrays;
+public class Main{
+    public static void main(String[]args){
+    Scanner sc = new Scanner(System.in);
+    String s1 = sc.nextLine().toLowerCase().replaceAll(" ","");
+    String s2 = sc.nextLine().toLowerCase().replaceAll(" ","");
+    if (s1.length()!=s2.length()){
+        System.out.println("No");
+    }else{
+        char[] sa1 = s1.toCharArray();
+        char[] sa2 = s2.toCharArray();
+        Arrays.sort(sa1);
+        Arrays.sort(sa2);
+        if(Arrays.equals(sa1,sa2)){
+            System.out.println("Anagram");
+        }else{
+            System.out.println("No");
+        }
+    }
+    
+}}
+
+10) Vowel reverse 
+
+import java.util.Scanner;
+import java.util.Arrays;
+public class Main{
+    public static void main(String[]args){
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    StringBuilder x = new StringBuilder();
+    char[] ip = s.toCharArray();
+    for(int i =0;i<s.length();i++){
+        char c = s.charAt(i);
+        if(vow(c)){
+            x.append(c);
+        }
+    }
+    String rev = x.reverse().toString();
+    char[] v = rev.toCharArray();
+    int n=0;
+    for(int i=0;i<s.length();i++){
+        if(vow(ip[i])){
+            ip[i]=v[n++];
+        }
+    }
+    System.out.println(ip);
+}
+    public static boolean vow(char c){
+        c= Character.toLowerCase(c);
+        return c=='a'||c=='e'||c=='i'||c=='o'||c=='u';
+    }
+}
+
+ 11) Vowel remove , print further consonant w/o vowel
+
+import java.util.Scanner;
+
+import java.util.Arrays;
+
+public class Main{
+
+    public static void main(String[]args){
+
+    Scanner sc = new Scanner(System.in);
+
+    String s = sc.nextLine();
+
+    StringBuilder x = new StringBuilder();
+
+    char[] ip = s.toCharArray();
+    String con = "bcdfghjklmnpqrstvwxyz";
+    char xy[]= con.toCharArray();
+    char r[] = new char[s.length()];
+    int n=0,m=0;
+    for(int i=0;i<s.length();i++){
+        char c=s.charAt(i);
+        if(vow(c))
+        r[i]=xy[n++];
+        else
+        r[i]=c;
+    }
+    System.out.println(r);
+}
+
+    public static boolean vow(char c){
+
+        c= Character.toLowerCase(c);
+
+        return c=='a'||c=='e'||c=='i'||c=='o'||c=='u';
+
+    }
+
+}
+
