@@ -1,5 +1,6 @@
 1) Number of upper,lower, digit, special
 
+
 import  java.util.*;
 public class Main
 {
