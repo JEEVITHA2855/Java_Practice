@@ -1,0 +1,195 @@
+1) Recursion
+
+import java.util.*;
+
+
+public class Main
+{
+	public static void main(String[] args) {	
+	    System.out.println(nested(90));
+	 
+	}
+	public static int nested (int n){
+	    if (n>100){
+	        return n-10;
+	    }
+	    else{
+	        return nested(nested(n+11));
+	    }
+	}
+}
+
+
+2) Product of digits
+
+
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner in=new Scanner(System.in);
+	    int n=in.nextInt();
+	    System.out.println(pro(n));
+	 
+	}
+	
+ public static int pro(int n) {
+        int prod= 1;
+        while (n > 0) {
+            int rem= n % 10;
+            prod*=rem;
+            n /= 10;
+        }
+        return prod;
+    }
+}
+3) Remove duplicates
+
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner in=new Scanner(System.in);
+	   String s= in.nextLine();
+	   String x = dup (s,"");
+	   
+	   System.out.print(x);
+	}
+	public static String dup(String s,String a){
+if (s.isEmpty())
+return a;
+char c = s.charAt(0);
+if (a.indexOf(c)==-1){
+    a+=c;
+}
+return dup (s.substring(1),a);
+}
+}
+
+4) Sort Arrays
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int size = in.nextInt();
+        int[] arr = new int[size];
+
+        for (int i = 0; i < size; i++) {
+            arr[i] = in.nextInt();
+        }
+
+        sort(arr); 
+
+        for (int i = 0; i < size; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+    public static void sort(int[] arr) {
+        Arrays.sort(arr);
+    }
+}
+
+5) Count steps
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int num = in.nextInt();
+
+        System.out.println(count(num));
+    }
+
+    public static int count(int num) {
+        if (num == 0) return 0;
+
+        if (num % 2 == 0)
+            return 1 + count(num/2);
+        else
+            return 1 + count(num-1);
+    }
+}
+
+6) A to Z
+
+import java.util.*;
+
+public class Main {
+
+    static int sum = 0;
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int num = in.nextInt();
+        sums(num, 1);
+        System.out.println("\nSum = " + sum);
+    }
+
+    public static void sums(int num, int pos) {
+        if (num == 0) return;
+
+        int digit = num % 10;
+
+        if (pos % 2 != 0) {
+            sum += digit;
+
+        }
+
+        sums(num / 10, pos + 1);
+    }
+}
+
+7) Sum of alternative digits 
+
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String a = in.nextLine();
+
+        System.out.println(change(a));
+    }
+
+    public static String change(String a) {
+        if (a.isEmpty()) return "";
+
+        char ch = a.charAt(0);
+        if (ch == 'a') {
+            return 'z' + change(a.substring(1));
+        } else {
+            return ch + change(a.substring(1));
+        }
+    }
+}
+
+
+
+8) Vowels count 
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.nextLine();
+		System.out.println(change(s,0));
+	}
+	public static int change(String s,int count){
+	    if (s.isEmpty()){
+	        return count;
+	    }
+	    char first = s.charAt(0);
+	
+	    if (first == 'a'||first=='e'||first=='i'||first=='o'||first=='u') count++;
+	    return change(s.substring(1),count);
+	}
+}
+
