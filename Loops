@@ -1,0 +1,308 @@
+/*there is an auto-mobile company which manufactures both two and four wheelers.
+input - total : 200
+	  - wheels : 540
+output - number of 2 and 4 wheelers*/
+import java.util.*;
+public class Main{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner (System.in);
+	    int tot = sc.nextInt();
+	    int wheels = sc.nextInt();
+	    int res = ((4*tot)-wheels)/2;
+	    int res2 = tot - res;
+	    System.out.println("Two wheelers : "+res);
+	    System.out.println("Four wheelers : "+res2);
+
+	}
+}
+
+Monkey
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int tot = sc.nextInt(); // monkey
+        int eb = sc.nextInt();  // banana
+        int ep = sc.nextInt();  // peanut
+        int tb = sc.nextInt();  // total banana
+        int tp = sc.nextInt();  // total peanut
+        
+        if (tot <= 0 || eb <= 0 || ep <= 0 || tb < 0 || tp < 0) {
+            System.out.println("Invalid");
+        } else {
+            int b = tb / eb;
+            int p = tp / ep;
+            int fed = Math.min(tot, Math.min(b, p));
+            tot = tot - fed;
+            System.out.println(tot);
+        }
+    }
+}
+
+Palindrome in number
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m=n;
+        int x=0;
+        while(n!=0){
+            int r = n%10;
+            x=x*10+r;
+            n/=10;
+        }if(m==x){
+        System.out.print("Palindrome");
+        } else{
+            System.out.print("No");
+        }
+    }
+}
+
+Maximum sequence of 1
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        int[] a = new int[size];
+        for(int i =0;i<size;i++){
+            a[i]=sc.nextInt();
+        }
+        int count=0,max=0;
+        for(int i=0;i<size;i++){
+            if(a[i]==1){
+                count++;
+                max= Math.max(max,count);
+            }else{
+                count=0;
+            }
+        }System.out.print("Maximum sequence : "+max);
+    }
+}
+
+Betrothed number
+
+import java.util.*;
+public class Main{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner (System.in);
+	    int n1 = sc.nextInt();
+	    int n2 = sc.nextInt();
+	    int sum1 =0,sum2=0;
+	    for(int i =1;i<n1;i++){
+	        if(n1%i==0){
+	            sum1+=i;
+	        }
+	    }for(int i =1;i<n2;i++){
+	        if(n2%i==0){
+	            sum2+=i;
+	        }
+	    }
+	    if(n1+1==sum2 && n2+1==sum1){
+	        System.out.println("Betrothed number");
+	    }else{
+	        System.out.println("No");
+	    }
+	}
+}
+
+Magical number
+
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    int n1 = sc.nextInt();
+	    int sum1 = n1; 
+
+	    while (sum1 > 9) { 
+	        int temp = sum1;
+	        sum1 = 0;
+	        while (temp > 0) {
+	            int rem = temp % 10;
+	            sum1 += rem;
+	            temp /= 10;
+	        }
+	    }
+
+	    if (sum1 == 1) {
+	        System.out.println("Magical number");
+	    } else {
+	        System.out.println("No");
+	    }
+	}
+}
+
+ Adam’s number
+
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    int n1 = sc.nextInt();
+	    int temp = n1,rev=0;
+	    while(n1>0){
+	        int rem = n1%10;
+	        rev = rev*10+rem;
+	        n1/=10;
+	    } int sqr=rev*rev;
+	    int temp_sqr = sqr,rev1=0;
+	    while (sqr>0){
+	        int rem1 = sqr%10;
+	        rev1 = rev1*10+rem1;
+	        sqr/=10;
+	    }
+
+	    if ((temp*temp) == rev1) {
+	        System.out.println("Adams number");
+	    } else {
+	        System.out.println("No");
+	    }
+	}
+}
+
+Equilateral triangle
+
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    int n1 = sc.nextInt();
+	    for(int i=0;i<n1;i++){
+	        for(int j=0;j<2*n1-1;j++){
+	            if(j>=n1-i-1 && j<=n1+i-1){
+	            System.out.print("*");
+	            }else{
+	               System.out.print(" "); 
+	            }
+	        }
+	        System.out.println();
+	    }
+	}
+}
+
+ 
+
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    int n1 = sc.nextInt();
+	    for(int i=1;i<=n1;i++){
+	        for(int j=i;j<n1;j++){
+	            System.out.print(" ");
+	        }for(int k=1;k<=i;k++){
+	            if(k==1||k==i||i==n1){
+	                System.out.print(k+" ");
+	            }else{
+	                System.out.print("  ");
+	            }
+	        }
+	        System.out.println();
+	    }
+	}
+}
+
+
+
+ 
+
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		for(int i=n; i>=1; i--){ 
+			for(int j=0; j<n-i; j++) {
+				System.out.print("  ");
+			}for(int s=i;s>=1;s--){
+			    System.out.print(s+"  ");
+			}for(int j = 2;j<=i;j++){
+			    System.out.print(j+"  ");
+			}
+			System.out.println();
+	}
+		
+			
+		}
+	}
+
+
+
+  
+
+import java.util.Scanner;
+public class Main {
+	    public static void main(String[] args) {
+	        Scanner sc = new Scanner(System.in);
+	        int n = sc.nextInt();
+
+	        for (int i = 1; i <= n; i++) {
+	            for (int s = 1; s <= n - i; s++)
+	                System.out.print("   ");
+	            for (int j = 1; j <= i; j++)
+	                System.out.print(j + "  ");
+	            for (int j = i - 1; j >= 1; j--)
+	                System.out.print(j + "  ");
+	            System.out.println();
+	        }
+
+	        for (int i = n - 1; i >= 1; i--) {
+	            for (int s = 1; s <= n - i; s++)
+	                System.out.print("   ");
+	            for (int j = 1; j <= i; j++)
+	                System.out.print(j + "  ");
+	            for (int j = i - 1; j >= 1; j--)
+	                System.out.print(j + "  ");
+	            System.out.println();
+	   }
+	
+	}
+}
+
+ Array - palindrome
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] a = new int[n];
+        boolean idk = true;
+
+        
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+
+      
+        for (int i = n - 1; i >= 0; i--) {
+            System.out.print(a[i]);
+        }
+        System.out.println();
+
+        
+        for (int i = 0; i < n / 2; i++) {
+            if (a[i] != a[n - i - 1]) {
+                idk = false;
+                break;
+            }
+        }
+
+        if (idk) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("No");
+        }
+    }
+}
+
+ Right shift
