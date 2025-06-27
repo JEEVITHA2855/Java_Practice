@@ -1,7 +1,7 @@
 Exceptional handling
 
 The important aspect of exception handling is to ensure the proper flow of execution of the code.
-i) unchecked ii) checked iii) error iv) user defined / custom exception 
+i) unchecked ii) checked iii) error iv) user defined / custom exception
 
 What keywords are used in exception handling?
 Try
