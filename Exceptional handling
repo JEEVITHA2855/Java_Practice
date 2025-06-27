@@ -1,0 +1,353 @@
+Exceptional handling
+
+The important aspect of exception handling is to ensure the proper flow of execution of the code.
+i) unchecked ii) checked iii) error iv) user defined / custom exception 
+
+What keywords are used in exception handling?
+Try
+Catch
+Throw
+Throws 
+Finally
+
+Try & Catch - It is used to handle exceptions that might occur in a set of block / block of code.
+Throw - It is used to explicitly throw an exception. It only throws custom / built-in exceptions.
+Throws - It is used in method signatures to declare that a method may throw an exception.
+Finally - It always executes whether an exception is handled (or) not.
+
+Automatic garbage collection - A variable or object that's no longer used automatically clears itself from memory — thanks to Java’s garbage collector. You don't have to delete it; Java handles that in the background.
+
+ii) Checked
+  i) No search method exception ii) illegal access exception 
+iii) invocation exception iv) interrupted exception v) instantiation exception
+vi) class not found exception vii) I/O exception viii) file not found exception
+ix) SQL exception
+
+I/O exception
+
+//checked exception - I/O exception - I/O Exception occurs when an input or output operation fails — 
+//like when a file is missing, too large, not accessible, or there's a disk or network problem.
+import java.io.*;
+public class Main{
+    public static void main(String[] args){
+        try{
+            FileReader r = new FileReader("not_found.txt");
+            r.read();
+            r.close();
+        } catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+
+import java.io.*;
+public class Main{
+    public static void main(String[] args){
+        try{
+            FileReader r = new FileReader("not_found.txt");
+            //r.read();
+            //r.close();
+        } catch(FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+    }
+}
+(operations can’t be pushed )
+
+ClassNotFoundException
+It may occur when trying to load a class at run time that cannot be found.
+
+
+import java.io.*;
+public class Main{
+    public static void main(String[] args){
+        try{
+            Class.forName("bannari.Class"); //defining a class at console
+        } catch(ClassNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+
+
+
+
+
+
+SQL exception
+
+import java.io.*;
+import java.sql.*;
+public class Main{
+    public static void main(String[] args){
+        try{
+            Connection c = DriverManager.getConnection("sql connection link from somewhere"); 
+        } catch(ClassNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+No suitable driver found for “the link”
+
+Interruption exception 
+It occurs when a thread is interrupted while sleeping (or) waiting.
+Thread - process
+
+import java.io.*;
+import java.sql.*;
+public class Main{
+    public static void main(String[] args){
+        Thread t = new Thread(()-> {
+        try{
+            Thread.sleep(100);
+        } catch(InterruptedException e){
+            System.out.println(e.getMessage());
+        }
+    });
+    t.start();
+    t.interrupt();
+    }
+}
+
+
+
+
+If a program contains 1 class but N number of methods , if any one of the methods is declared as non-static method , we are not able to call the method directly using its name. These are the scenarios in which an object should be created : 
+In that case we have to create an object for the class , we can access the methods using the object’s name. 
+When a program contains N number of classes to access the methods of outer class we have to create an object for that specific class.
+Whenever we are creating a constructor (non-static & dynamic) we must create an object.
+
+
+Illegal Access Exception
+
+import java.io.*;
+import java.sql.*;
+public class Main{
+    public static void main(String[] args){
+        try{
+            Class<?> a = Sample.class;
+            Object ob = a.newInstance();
+            
+        } catch(InstantiationException | IllegalAccessException e){
+            System.out.println("IllegalAccessException"+e.getMessage());
+        }
+    }
+}
+class Sample{}
+
+No output kanna
+
+
+
+
+
+
+
+
+
+
+
+i) UNCHECKED EXCEPTIONS
+
+ i) Arithmetic exception 
+
+import java.io.*;
+import java.sql.*;
+public class Main{
+    public static void main(String[] args){
+       int c = 10/0;
+       System.out.print(c);
+    }
+}
+
+
+
+ ii) Null pointer exception 
+
+import java.io.*;
+import java.sql.*;
+public class Main{
+    public static void main(String[] args){
+       String c = null;
+       System.out.print(c.length());
+    }
+}
+If any method (or) variable is defined as null , when they are accessed it throws null pointer exception
+
+
+
+ iii) IndexOutOfBound exception
+
+This is known.
+
+ iv) StringIndexOutOfBound exception
+
+import java.io.*;
+import java.sql.*;
+public class Main{
+    public static void main(String[] args){
+       String c = "Kiru";
+       System.out.print(c.charAt(5));
+    }
+}
+
+
+
+ v) Number format exception
+
+import java.io.*;
+import java.sql.*;
+public class Main{
+    public static void main(String[] args){
+       String c = "Kiru";
+       System.out.print(Integer.parseInt(c));
+    }
+}
+
+
+
+
+ vi) Class cast exception (wrapper class)
+
+Casting an object to an incomplete type.
+
+import java.io.*;
+import java.sql.*;
+public class Main{
+    public static void main(String[] args){
+       Object ob = new String("Kiru");
+       Integer x = (Integer)ob;
+    }
+}
+
+
+
+
+ vii) Illegal argument exception
+
+It throws an exception when a method receives an inappropriate argument.
+import java.io.*;
+import java.sql.*;
+public class Main{
+    public static void main(String[] args){
+       Thread t = new Thread();
+       t.setPriority(100);
+    }
+}
+
+
+
+ viii) Illegal state exception
+
+It throws when a method is invoked at an illegal (or) inappropriate time
+
+import java.io.*;
+import java.util.*;
+import java.sql.*;
+public class Main{
+    public static void main(String[] args){
+      Scanner in = new Scanner(System.in);
+      in.close();
+      in.nextLine();
+    }
+}
+
+
+
+ ix) Unsupported operation exception
+
+import java.io.*;
+import java.util.*;
+import java.sql.*;
+public class Main{
+    public static void main(String[] args){
+      List<String> x=x.of("a","b");
+      x.add("c");
+    }
+}
+
+
+
+ x) Negative array size exception
+
+import java.io.*;
+import java.util.*;
+import java.sql.*;
+public class Main{
+    public static void main(String[] args){
+      int a[] = new int[-1];
+    }
+}
+
+
+
+ 
+
+
+ iii) ERROR
+Error is a subclass of throwable and indicates serious problems that applications should not try to catch.
+These are typically environmental issues (or) internal errors in JVM.
+Types:
+i) Out of memory error
+When jvm runs out of heap memory 
+ 	
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+     List<int[]> x= new ArrayList<>();
+     while(true){
+         x.add(new int[100000000000]);
+     }
+    }
+}
+
+
+ii) Stack overflow error
+This is known.
+iii) Virtual machine error
+ when Java Virtual Machine (JVM) is struggling to function properly — basically, the JVM is like:
+"Girl, I can’t even 🫠"
+iv) Unknown error
+
+public class Main {
+    public static void main(String[] args) {
+        throw new UnknownError("Simulated JVM panic!");
+    }
+}
+
+
+
+v) No class def found error
+Not needed 
+
+vi) Assertion error
+
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+     int a =5;
+     assert a>=10 : "valid";
+     System.out.print("not valid");
+    }
+}
+
+
+
+
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+     int a =5;
+     assert a>=10 : "valid";
+    }
+}
+
+blank
+
+iv) user defined / custom exception 
