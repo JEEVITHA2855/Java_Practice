@@ -1,0 +1,201 @@
+Longest subarray with sum less than or equal to k
+
+import java.util.*;
+
+public class Solution {
+    public static int subarr(int[] arr, int k) {
+        int right = 0, left = 0;
+        int maxLen = 0, sum = 0;
+
+        while (right < arr.length) {
+            sum += arr[right];
+
+            while (sum > k && left <= right) {
+                sum -= arr[left];
+                left++;
+            }
+
+            maxLen = Math.max(maxLen, right - left + 1);
+            right++;
+        }
+
+        return maxLen;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter array size: ");
+        int size = in.nextInt();
+
+        int arr[] = new int[size];
+        System.out.print("Enter array elements: ");
+        for (int i = 0; i < size; i++) {
+            arr[i] = in.nextInt();
+        }
+
+        System.out.print("Enter value of k: ");
+        int k = in.nextInt();
+
+        int result = subarr(arr, k);
+        System.out.println( result);
+    }
+}
+
+
+
+
+
+Maximum difference b/w sums of 2 subarrays with size k
+
+import java.util.*;
+
+public class Solution {
+    public static int subarr(int[] arr, int k) {
+        int right = 0, left = 0;
+        int sum = 0;
+        for (int i=0;i<k;i++){
+            sum=sum+arr[i];
+        }
+         int  max=Integer.MIN_VALUE;
+         int min=Integer.MAX_VALUE;
+        for(int i=k;i<arr.length;i++){
+            sum=sum+arr[i] - arr[i-k];
+            
+        
+      max=Math.max(sum,max);
+       min=Math.min(sum,min);}
+        return max-min;
+    }
+public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter array size: ");
+        int size = in.nextInt();
+
+        int arr[] = new int[size];
+        System.out.print("Enter array elements: ");
+        for (int i = 0; i < size; i++) {
+            arr[i] = in.nextInt();
+        }
+
+        System.out.print("Enter value of k: ");
+        int k = in.nextInt();
+
+        int result = subarr(arr, k);
+        System.out.println( result);
+    }
+}
+
+
+
+Sliding window product of size k of an array
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		int size = sc.nextInt();
+		int[] a = new int[size];
+		for(int i =0;i<size;i++){
+		    a[i]= sc.nextInt();
+		}int k = sc.nextInt();
+		
+		subarray(a,k);
+	}
+	public static void subarray(int[] a,int k){
+	    int product=1;
+	    for(int i =0;i<=k-1;i++){
+	        product=1;
+	        for(int j=i;j<i+k;j++){
+	            product*=a[j];
+	        }	    
+            System.out.print(product+" ");
+	    }
+	}
+}
+
+
+
+
+Maximum even sum in a window of size k using array.
+
+import java.util.*;
+
+public class Main {
+    
+    public static int max(int[] arr, int k) {
+        int max = 0;
+        int size = arr.length;
+
+        for (int i = 0; i <= size - k; i++) {
+            int sum = 0;
+            for (int j = i; j < i + k; j++) {
+                sum += arr[j];
+            }
+            if (sum % 2 == 0) {
+                max = Math.max(max, sum);
+            }
+        }
+
+        return max;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        int[] a = new int[size];
+
+        for (int i = 0; i < size; i++) {
+            a[i] = sc.nextInt();
+        }
+
+        int k = sc.nextInt();
+
+        int result = max(a, k);
+        System.out.println(result);
+    }
+}
+
+
+
+
+Longest subarray with most k odd numbers.
+
+import java.util.*;
+
+public class Main {
+    
+    public static int odd(int[] arr, int k){
+
+        int left = 0, right = 0, count = 0, maxLen = 0;
+        int size=arr.length;
+        while (right < size) {
+            if (arr[right] % 2 != 0) {
+                count++;
+            }
+
+            while (count > k) {
+                if (arr[left] % 2 != 0) {
+                    count--;
+                }
+                left++;
+            }
+maxLen = Math.max(maxLen, right - left + 1);
+
+
+            right++;
+        }
+return maxLen;
+    }
+  
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int size = in.nextInt();
+        int[] arr = new int[size];
+        
+        for (int i = 0; i < size; i++) {
+            arr[i] = in.nextInt();
+        }
+        int k=in.nextInt();
+       System.out.println(odd(arr,k)); 
+    }
+}
