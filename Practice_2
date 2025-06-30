@@ -1,0 +1,336 @@
+
+Longest substring with utmost k distinct characters using string.
+
+import java.util.*;
+
+public class Main {
+    public static int sub(String s, int k) {
+        if (s==null || s.length() == 0 || k==0) return 0;
+     Map <Character , Integer > map = new HashMap<>();
+     int left=0,maxLen=0;
+     for (int right=0;right<s.length();right++){
+         char c = s.charAt(right);
+         map.put(c,map.getOrDefault(c,0)+1);
+         if (map.size()>k){
+             char leftChar = s.charAt(left);
+             map.put(leftChar, map.get(leftChar)-1);
+             if (map.get(leftChar)==0){
+                 map.remove(leftChar);
+             }
+             left++;
+         }
+     
+         maxLen=Math.max(maxLen, right-left+1);
+     }
+     return maxLen;
+        
+    }
+     public static void main (String[] args){
+         Scanner in=new Scanner (System.in);
+         String s=in.nextLine();
+       int k=in.nextInt();
+       int result = sub(s,k);
+       System.out.print(result);
+     }
+}
+     
+
+Longest vowel substring.
+
+import java.util.*;
+
+public class Main {
+    public static int sub(String s) {
+        if (s==null || s.length() == 0) return 0;
+        int maxLen=0, currlength=0 ;
+        for (int i=0;i<s.length();i++){
+            char c=s.charAt(i);
+         if (c=='a' || c=='e' ||c=='i' || c=='o' ||c=='u' || c=='A' || c=='E' || c=='I' ||c=='O' || c=='U'){
+            currlength++ ;
+         
+         
+         maxLen=Math.max(maxLen,currlength);
+         }
+         else{
+            currlength =0;
+         }
+        }
+     return maxLen;
+    }
+    
+    
+     public static void main (String[] args){
+         Scanner in=new Scanner (System.in);
+         String s=in.nextLine();
+     
+       int result = sub(s);
+       System.out.print(result);
+     }
+}
+     
+     
+
+Rotate matrix by 180 degree.
+
+import java.util.*;
+
+public class Main {
+    public static void rot(int[][] arr,int size){
+  
+        for(int i=size-1;i>=0;i--){
+            for (int j=size-1;j>=0;j--){
+            System.out.print(arr[i][j]+" ");
+        }
+        
+    System.out.println();
+    }}
+    
+    public static void main (String[] args){
+       Scanner in = new Scanner (System.in);
+       int size=in.nextInt();
+       int arr[][] = new int[size][size];
+       for (int i=0;i<size;i++){
+           for (int j=0;j<size;j++){
+           arr[i][j]= in.nextInt();
+       }
+       }
+           rot(arr,size);
+        }
+       }
+    
+
+     
+
+
+
+
+Search in row and column wise sorted matrix.
+
+import java.util.*;
+
+public class Main {
+    public static void rot(int[][] arr, int target, int size) {
+        int i = 0, j = size - 1;
+
+        while (i < size && j >= 0) {
+            if (arr[i][j] == target) {
+                System.out.println("Found at (" + i + ", " + j + ")");
+                return;
+            } else if (arr[i][j] > target) {
+                j--; 
+            } else {
+                i++; 
+            }
+        }
+
+        System.out.println("Not found");
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int size = in.nextInt();
+        int target = in.nextInt();
+        int[][] arr = new int[size][size];
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                arr[i][j] = in.nextInt();
+            }
+        }
+
+        rot(arr, target, size);
+    }
+}
+
+
+
+Take an array of 0’s and 1’s make the array as evenly sorted. 110011 = 001111
+
+import java.util.*;
+
+public class Main {
+    public static void rot(int[] arr, int size) {
+     int pos=0;
+      for (int i = 0; i < size; i++) {
+       if (arr[i]!=0){
+           int temp=arr[i];
+           arr[i]=arr[pos];
+           arr[pos] = temp;
+           pos++;
+           
+       }  
+       
+      }
+       for (int i = 0; i < size; i++) {
+      System.out.print(arr[i]);
+    }
+}
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int size = in.nextInt();
+      
+        int[] arr = new int[size];
+
+        for (int i = 0; i < size; i++) {
+           
+                arr[i] = in.nextInt();
+            }
+        
+
+        rot(arr,size);
+    }
+}
+
+
+Matrix multiplication
+
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        int m = in.nextInt(); 
+        int n = in.nextInt(); 
+
+        int[][] A = new int[m][n];
+
+       
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                A[i][j] = in.nextInt();
+            }
+        }
+
+        int n2 = in.nextInt(); 
+        int p = in.nextInt(); 
+
+        if (n != n2) {
+            System.out.println("Invalid input");
+            return;
+        }
+
+        int[][] B = new int[n2][p];
+
+        for (int i = 0; i < n2; i++) {
+            for (int j = 0; j < p; j++) {
+                B[i][j] = in.nextInt();
+            }
+        }
+
+        int[][] C = new int[m][p];
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < p; j++) {
+                for (int k = 0; k < n; k++) {
+                    C[i][j] += A[i][k] * B[k][j];
+                }
+            }
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < p; j++) {
+                System.out.print(C[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+Find the duplicate numbers of an array.
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int size = in.nextInt();
+        int[] arr = new int[size];
+
+        for (int i = 0; i < size; i++) {
+            arr[i] = in.nextInt();
+        }
+
+        Set<Integer> seen = new HashSet<>();
+        Set<Integer> dupl = new HashSet<>();
+
+        for (int num : arr) {
+            if (!seen.add(num)) {
+                dupl.add(num);
+            }
+        }
+
+        System.out.print("Duplicates: ");
+        for (int dup : duplicates) {
+            System.out.print(dup + " ");
+        }
+    }
+}
+
+
+Maximum average of subarray k (Leetcode 643 )
+import java.util.*;
+
+public class Main {
+
+    public static double sum(int[] nums, int k) {
+        double sum = 0;
+        for (int i = 0; i < k; i++) {
+            sum += nums[i];
+        }
+
+        double maxSum = sum;
+
+        for (int i = k; i < nums.length; i++) {
+            sum = sum - nums[i - k] + nums[i];
+            maxSum = Math.max(maxSum, sum);
+        }
+
+        return maxSum / k;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        
+        int size = in.nextInt();
+        int[] arr = new int[size];
+
+        for (int i = 0; i < size; i++) {
+            arr[i] = in.nextInt();
+        }
+
+        int k = in.nextInt(); 
+
+        double result = sum(arr, k);
+        System.out.printf("%.5f\n", result);
+    }
+}
+
+Remove duplicates
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int size = in.nextInt();
+        int[] arr = new int[size];
+
+        for (int i = 0; i < size; i++) {
+            arr[i] = in.nextInt();
+        }
+
+        Set<Integer> unique = new LinkedHashSet<>();
+        for (int num : arr) {
+            unique.add(num);
+        }
+
+        for (int num : unique) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+
