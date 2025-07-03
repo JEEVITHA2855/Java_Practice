@@ -1,0 +1,433 @@
+Encapsulation
+
+import java.util.*;
+//encapsulation
+class Student {
+    private String name;
+    private String dept;
+    private int roll;
+    private String clg;
+
+    public void setName(String s) {
+        this.name = s;
+    }
+
+    public void setRoll(int roll) {
+        this.roll = roll;
+    }
+
+    public void setDept(String dept) {
+        this.dept = dept;
+    }
+
+    public void setClg(String clg) {
+        this.clg = clg;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getRoll() {
+        return roll;
+    }
+
+    public String getDept() {
+        return dept;
+    }
+
+    public String getClg() {
+        return clg;
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        Student student = new Student();
+
+        System.out.print("Enter name: ");
+        String name = in.nextLine();
+        student.setName(name);
+
+        System.out.print("Enter roll number: ");
+        int roll = in.nextInt();
+        student.setRoll(roll);
+
+        in.nextLine(); 
+
+        System.out.print("Enter department: ");
+        String dept = in.nextLine();
+        student.setDept(dept);
+
+        System.out.print("Enter college: ");
+        String clg = in.nextLine();
+        student.setClg(clg);
+
+        System.out.println( student.getName());
+        System.out.println(student.getRoll());
+        System.out.println(student.getDept());
+        System.out.println( student.getClg());
+    }
+}
+
+
+INHERITANCE 
+
+//hierarcial 
+
+import java.util.*;
+
+
+class A {
+    public static int add(int a, int b, int c) {
+        return a+b+c;
+    }
+}
+    class B extends A{
+    public static int sub(int a, int b, int c) {
+        return a-b-c;
+    }
+}
+class C extends A{
+    public static int mul(int a, int b, int c) {
+        return a*b*c;
+    }
+}
+
+    public class Main{
+        public static void main(String[] args){
+       
+    
+        System.out.println(A.add(5,6,7));
+         System.out.println(B.sub(10,3,1));
+          System.out.println(C.mul(20,10,1));
+        
+        
+        
+        }   
+}
+
+//Multilevel
+
+import java.util.*;
+
+
+class A {
+    public static int add(int a, int b, int c) {
+        return a+b+c;
+    }
+}
+    class B extends A{
+    public static int sub(int a, int b, int c) {
+        return a-b-c;
+    }
+}
+class C extends B{
+    public static int mul(int a, int b, int c) {
+        return a*b*c;
+    }
+}
+class D extends C{
+    public static int div(int a, int b, int c) {
+        return a/b/c;
+    }
+}
+
+
+    
+    public class Main{
+        public static void main(String[] args){
+        D ob=new D();
+       
+    
+        System.out.println(ob.add(5,6,7));
+         System.out.println(ob.sub(10,3,1));
+          System.out.println(ob.mul(20,10,1));
+           System.out.println(ob.div(5,6,7));
+        
+        
+        
+        }   
+}
+
+//Multiple
+
+import java.util.*;
+interface A{
+    void bannari(); //AbstractMethod; interface kula AbstractMethod matum dha irukanum
+}
+interface B{
+    void college();
+}
+interface C{
+    void hostel();
+}
+class D implements A,B,C{
+    public void bannari(){
+        System.out.print("Welcome");
+    }
+    public void college(){
+        System.out.print("Hello");
+    }
+    public void hostel(){
+        System.out.print("Yamuna");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        D obj = new D();
+        obj.bannari();
+        obj.college();
+        obj.hostel();
+    
+        
+    }
+}
+
+//Hybrid
+
+import java.util.*;
+interface A{
+    void bannari();
+}
+interface B extends A{
+    void college();
+}
+interface C extends A{
+    void hostel();
+}
+class D implements B,C{
+    public void bannari(){
+        System.out.print("Welcome ");
+    }
+    public void college(){
+        System.out.print("Hello ");
+    }
+    public void hostel(){
+        System.out.print("Yamuna");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        D obj = new D();
+        obj.bannari();
+        obj.college();
+        obj.hostel();
+    
+       }
+}
+ Super keyword
+
+class a{
+    int x=10;
+}class B extends a{
+    int x=50;
+    public void disp(){
+        System.out.print(super.x);
+        //System.out.print(x);
+    }
+}public class Main{
+    public static void main(String[] args){
+        B ob = new B();
+        ob.disp();
+    }
+}
+
+ Upcasting // Method overriding
+
+class a{
+    void bannari(){
+        System.out.print("boys");
+    }
+}class B extends a{
+    
+    public void bannari(){
+        System.out.print("girls");
+        //System.out.print(x);
+    }
+}public class Main{
+    public static void main(String[] args){
+        a ob = new a();
+        ob.bannari();
+    }
+}
+Boys
+
+class a{
+    void bannari(){
+        System.out.print("boys");
+    }
+}class B extends a{
+    
+    public void bannari(){
+        System.out.print("girls");
+        //System.out.print(x);
+    }
+}public class Main{
+    public static void main(String[] args){
+        a ob = new B();
+        ob.bannari();
+    }
+}
+Girls 
+
+ Abstraction code - same as inheritance but just add abstraction 
+
+abstract class a{
+    abstract void bannari();
+    void clg(){
+        System.out.print("boys");
+    }
+}class B extends a{
+    
+    public void bannari(){
+        System.out.print("girls");
+        //System.out.print(x);
+    }
+}public class Main{
+    public static void main(String[] args){
+        a ob = new B();
+        ob.bannari();
+        ob.clg();
+    }
+}
+
+ ATM transaction
+
+import java.util.*;
+class bank{
+    int bal = 500;
+    void withdraw (int amt){
+        if(amt <= bal){
+        bal-=amt;
+        System.out.print("withdrawed amount : "+bal);
+        }else{
+            System.out.print("Insufficient amount");
+        }
+    }
+    void deposit (int amt){
+        bal+=amt;
+        System.out.print("Total balance : "+bal);
+    } void display(){
+        System.out.print("Current balance : "+bal);
+    } 
+}
+public class Main{
+    
+    public static void main(String[] args){
+        Scanner sc = new Scanner (System.in);
+        
+        bank op = new bank();
+        while(true)
+        {
+        System.out.print("\n1. Withdraw\n2. Deposit\n3.Balance\n4.Exit\n");
+        int choice = sc.nextInt();
+        switch(choice){
+            case 1 :
+                System.out.println("Enter the amount to withdraw : ");
+                int w = sc.nextInt();
+                op.withdraw(w);
+                break;
+            case 2:
+                System.out.println("Enter the amount to be deposited : ");
+                int d = sc.nextInt();
+                op.deposit(d);
+                break;
+            case 3:
+                op.display();
+                break;
+            case 4:
+                return;
+            default :
+            System.out.println("Invalid choice");
+        }
+        }
+    }
+}
+
+
+1) Using method overloading , a class calculator that overloads a method add to handle 2 integers 2 double 3 integers with the same name ‘add’ demonstrates all add.
+
+
+class Cal{
+public int add(int a, int b){
+    return a+b;
+}
+public double add(double a, double b){
+    return a+b;
+}
+public int add(int a, int b, int c){
+    return a+b+c;
+}
+}
+public class Main{
+public static void main(String[] args){
+Cal cal = new Cal();
+    System.out.println(cal.add(12,9));
+     System.out.println(cal.add(1.9,8.6));
+      System.out.println(cal.add(1,2,3));
+}
+}
+
+
+
+2) Create an interface playable with a method play. The task is to create classes football and Cricket implementing this interface called the play method polymorphically.
+
+interface playable{
+    void play();
+}
+class Football implements playable{
+    public void play(){
+    System.out.println("Football playing");
+}}
+class Cricket implements playable{
+    public void play(){
+    System.out.println("Cricket playing");
+}}
+public class Main{
+    public static void main(String[] args){
+        playable p1=new Football();
+        playable p2=new Cricket();
+        p1.play();
+        p2.play();
+    }
+}
+
+
+3) Create class book with overloaded constructor 1: no argument 2:1 argument(title) 3:argument(title,author name) create books using all constructor
+
+
+class Book{
+    String title;
+    String author;
+    
+    public Book(){
+        title= "Unknown";
+        author= "Unknown";
+    }
+    public Book(String title){
+        this.title= title;
+        this.author="Unknown";
+    }
+    public Book(String title, String author){
+        this.title=title;
+        this.author=author;
+    }
+     public void display() {
+        System.out.println("Title: " + title + ", Author: " + author);
+    }
+}
+public class Main{
+    public static void main(String[] args){
+         Book b1 = new Book();              
+        Book b2 = new Book("Pride and prejudice");         
+        Book b3 = new Book("1984", "George Orwell"); 
+
+        b1.display();
+        b2.display();
+        b3.display();
+    }
+}
+
