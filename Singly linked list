@@ -1,0 +1,205 @@
+import java.util.*;
+
+class Node
+{
+	int data;
+	Node next;
+
+	Node(int n)
+	{
+		this.data = n;
+		this.next = null;
+	}
+}
+
+public class Main
+{
+	Node head = null;
+
+	public void insertbeg(int n)
+	{
+		Node newnode = new Node(n);
+		newnode.next = head;
+		head = newnode;
+	}
+
+	public void insertpos(int pos, int n)
+	{
+		Node newnode = new Node(n);
+		if (pos == 0)
+		{
+			insertbeg(n);
+			return;
+		}
+
+		Node temp = head;
+		int count = 0;
+
+		while (temp != null && count < pos - 1)
+		{
+			temp = temp.next;
+			count++;
+		}
+
+		if (temp == null)
+		{
+			System.out.println("Position out of range");
+			return;
+		}
+
+		newnode.next = temp.next;
+		temp.next = newnode;
+	}
+
+	public void delete(int pos)
+	{
+
+		if (pos == 0)
+		{
+			head = head.next;
+			return;
+		}
+
+		Node temp = head;
+		int count = 0;
+
+		while (temp != null && count < pos - 1)
+		{
+			temp = temp.next;
+			count++;
+		}
+
+		temp.next = temp.next.next;
+	}
+
+	public boolean search(int target)
+	{
+		Node temp = head;
+		while (temp != null)
+		{
+			if (temp.data == target)
+			{
+				return true;
+			}
+			temp = temp.next;
+		}
+		return false;
+	}
+
+	public void display()
+	{
+		Node temp = head;
+
+		while (temp != null)
+		{
+			System.out.print(temp.data + " ");
+			temp = temp.next;
+		}
+		System.out.println();
+	}
+
+	public void middle()
+	{
+		Node temp = head;
+		int count = 0;
+
+		while (temp != null)
+		{
+			count++;
+			temp = temp.next;
+		}
+
+		int mid = count / 2;
+
+		temp = head;
+		for (int i = 0; i < mid; i++)
+		{
+			temp = temp.next;
+		}
+
+		System.out.println(temp.data);
+	}
+
+    public void removeDup()
+    {
+        Node temp=head;
+        while(temp!=null && temp.next!=null)
+        {
+            if(temp.data==temp.next.data)
+            {
+                temp.next=temp.next.next;
+            }
+            else
+            {
+                temp=temp.next;
+            }
+        }
+        System.out.println("Duplicates Removed");
+    }
+    
+	public static void main(String[] args)
+	{
+		Main ob = new Main();
+		Scanner sc = new Scanner(System.in);
+
+		while (true)
+		{
+			System.out.println("\n1.Insert at Beg\n2.Insert at Pos\n3.Delete\n4.Search\n5.Display\n6.Middle Element\n7.Remove Duplicates\n8.Exit");
+			System.out.print("Enter choice: ");
+			int c = sc.nextInt();
+
+			switch (c)
+			{
+			case 1:
+				System.out.print("Enter number to insert: ");
+				int n1 = sc.nextInt();
+				ob.insertbeg(n1);
+				System.out.println("Inserted!");
+				break;
+
+			case 2:
+				System.out.print("Enter number and position to insert: ");
+				int n2 = sc.nextInt();
+				int p2 = sc.nextInt();
+				ob.insertpos(p2, n2);
+				System.out.println("Inserted!");
+				break;
+
+			case 3:
+				System.out.print("Enter position to delete: ");
+				int p3 = sc.nextInt();
+				ob.delete(p3);
+				System.out.println("Deleted!");
+				break;
+
+			case 4:
+				System.out.print("Enter element to search: ");
+				int n4 = sc.nextInt();
+				if (ob.search(n4))
+					System.out.println("Found");
+				else
+					System.out.println("Not found");
+				break;
+
+			case 5:
+				ob.display();
+				break;
+
+			case 6:
+				ob.middle();
+				break;
+
+			case 7:
+			    ob.removeDup();
+			    break;
+			    
+			case 8:
+				System.out.println("Exiting...");
+				return;
+
+			default:
+				System.out.println("Invalid choice");
+			}
+		}
+	}
+}
