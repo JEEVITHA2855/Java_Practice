@@ -1,0 +1,204 @@
+import java.util.Scanner;
+
+class Node {
+    int data;
+    Node next;
+    Node prev;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+public class Main {
+    Node head = null;
+
+    public void insertbeg(int data) {
+        Node newnode = new Node(data);
+        if (head == null) {
+            head = newnode;
+            head.next = head;
+            head.prev = head;
+        } else {
+            Node tail = head.prev;
+            newnode.next = head;
+            newnode.prev = tail;
+            tail.next = newnode;
+            head.prev = newnode;
+            head = newnode;
+        }
+    }
+
+    public void insertpos(int x, int pos) {
+        if (pos < 0) {
+            System.out.println("Invalid");
+            return;
+        }
+        if (pos == 0) {
+            insertbeg(x);
+            return;
+        }
+
+        Node newnode = new Node(x);
+        int c = 0;
+        Node temp = head;
+
+        while (temp.next != head && c < pos - 1) {
+            temp = temp.next;
+            c++;
+        }
+
+        if (c != pos - 1) {
+            System.out.println("Invalid");
+            return;
+        }
+
+        newnode.next = temp.next;
+        newnode.prev = temp;
+        temp.next.prev = newnode;
+        temp.next = newnode;
+    }
+
+    public void delete(int pos) {
+        if (head == null || pos < 0) {
+            System.out.println("Invalid");
+            return;
+        }
+
+        if (pos == 0) {
+            if (head.next == head) {
+                head = null;
+                return;
+            }
+            Node tail = head.prev;
+            head = head.next;
+            head.prev = tail;
+            tail.next = head;
+            return;
+        }
+
+        int c = 0;
+        Node temp = head;
+        while (temp.next != head && c < pos) {
+            temp = temp.next;
+            c++;
+        }
+
+        if (c != pos) {
+            System.out.println("Invalid position");
+            return;
+        }
+
+        temp.prev.next = temp.next;
+        temp.next.prev = temp.prev;
+    }
+
+    public boolean search(int data) {
+        if (head == null)
+            return false;
+
+        Node temp = head;
+        do {
+            if (temp.data == data) {
+                return true;
+            }
+            temp = temp.next;
+        } while (temp != head);
+        return false;
+    }
+
+    public void rev() {
+        if (head == null)
+            return;
+
+        Node temp = head.prev;
+        Node start = temp;
+        System.out.print("Reversed: ");
+        do {
+            System.out.print(temp.data + " ");
+            temp = temp.prev;
+        } while (temp != start);
+        System.out.println();
+    }
+
+    public void display() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        Node temp = head;
+        System.out.print("List: ");
+        do {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        } while (temp != head);
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Main ob = new Main();
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n1. Insert Beg");
+            System.out.println("2. Insert Pos");
+            System.out.println("3. Delete");
+            System.out.println("4. Search");
+            System.out.println("5. Display");
+            System.out.println("6. Reverse");
+            System.out.println("7. Exit");
+
+            System.out.print("Enter choice: ");
+            int c = sc.nextInt();
+
+            switch (c) {
+                case 1:
+                    System.out.print("Enter number to insert: ");
+                    int n1 = sc.nextInt();
+                    ob.insertbeg(n1);
+                    System.out.println("Inserted!");
+                    break;
+
+                case 2:
+                    System.out.print("Enter number and position to insert: ");
+                    int n2 = sc.nextInt();
+                    int p = sc.nextInt();
+                    ob.insertpos(n2, p); // Fixed param order
+                    break;
+
+                case 3:
+                    System.out.print("Enter position to delete: ");
+                    int p1 = sc.nextInt();
+                    ob.delete(p1);
+                    break;
+
+                case 4:
+                    System.out.print("Enter element to search: ");
+                    int n4 = sc.nextInt();
+                    if (ob.search(n4))
+                        System.out.println("Found");
+                    else
+                        System.out.println("Not found");
+                    break;
+
+                case 5:
+                    ob.display();
+                    break;
+
+                case 6:
+                    ob.rev();
+                    break;
+
+                case 7:
+                    System.out.println("Exiting");
+                    return;
+
+                default:
+                    System.out.println("Invalid choice");
+            }
+        }
+    }
+}
