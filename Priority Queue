@@ -1,0 +1,298 @@
+Implementation
+
+class Node{
+    int data;
+    int p;
+    Node next;
+    public Node(int x, int p){
+        this.data=x;
+        this.p=p;
+        this.next=null;
+    }
+}
+public class Main{
+    Node head;
+    public void enqueue(int v,int p){
+        Node newnode = new Node(v,p);
+        if(head==null || p<head.p){
+            newnode.next=head;
+            head = newnode;
+        }
+        Node temp = head;
+        while(temp.next != null && temp.p.next <= p){
+            temp=temp.next;
+        }
+        newnode.next = temp.next;
+        temp.next = newnode;
+    }
+    public int dequeue(){
+        if(head == null){
+            return -1;
+        }
+        int val = head.data;
+        head = head.next;
+        return val;
+    }
+    public int peek(){
+        if(head == null){
+            return -1;
+        } return head.data;
+    }
+}
+
+With collections - add() , poll()
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        PriorityQueue <Integer> x = new PriorityQueue<>();
+        x.add(10);
+        x.add(20);
+        x.add(30);
+        x.add(40);
+        System.out.println(x);
+        System.out.println(x.poll());
+        System.out.println(x.peek());
+
+    }
+}
+To reverse 
+PriorityQueue <Integer> x = new PriorityQueue<>(Collections.reverseOrder());
+
+ Double ended queue
+
+import java.util.*;
+public class Main{
+   
+       int a[];
+       int front, rear , size;
+       
+       public Main(int x){
+           a = new int[x];
+           this.size=x;
+           this.front=-1;
+           this.rear=0;
+       }
+       public void insertFront(int v){
+           if((front == 0 && rear == size-1) || front == rear-1){
+               System.out.print("Full");
+           }
+           if(front==-1){
+               front=0;
+               rear=0;
+           }else if(front==0){
+               front = size-1;
+           }else{
+               front--;
+           }a[front]=v;
+       }
+        public void insertRear(int v){
+           if((front == 0 && rear == size-1) || front == rear-1){
+               System.out.print("Full");
+           }
+           if(rear==-1){
+               front=0;
+               rear=0;
+           }else if(rear==size-1){
+               rear = 0;
+           }else{
+               rear++;
+           }a[front]=v;
+           
+        }
+        public void delFront(){
+            if(front ==-1){
+                System.out.print("Full");
+            }
+            if(front==rear){
+                front=-1;
+                rear=-1;
+            }else if(front == size-1){
+                front =0;
+            }else{
+                front++;
+            }
+        }
+        public void delRear(){
+            if(front ==-1){
+                System.out.print("Full");
+            }
+            if(front==rear){
+                front=-1;
+                rear=-1;
+            }else if(rear == 0){
+                rear = size-1;
+            }else{
+                rear--;
+            }
+        }
+    
+}
+Queue implementation using Stack
+
+import java.util.*;
+
+public class Main {
+    Stack<Integer> s1 = new Stack<>();
+    Stack<Integer> s2 = new Stack<>();
+
+    public void enqueue(int v) {
+        s1.push(v);
+    }
+
+    public int dequeue() {
+        if (isEmpty()) return -1;
+
+        if (s2.isEmpty()) {
+            while (!s1.isEmpty()) {
+                s2.push(s1.pop());
+            }
+        }
+
+        return s2.pop();
+    }
+
+    public int peek() {
+        if (isEmpty()) return -1;
+
+        if (s2.isEmpty()) {
+            while (!s1.isEmpty()) {
+                s2.push(s1.pop());
+            }
+        }
+
+        return s2.peek();
+    }
+
+    public boolean isEmpty() {
+        return s1.isEmpty() && s2.isEmpty();
+    }
+
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+            return;
+        }
+
+        System.out.print("Queue elements: ");
+
+        // Front elements in s2 (top to bottom)
+        for (int i = s2.size() - 1; i >= 0; i--) {
+            System.out.print(s2.get(i) + " ");
+        }
+
+        // Rear elements in s1 (bottom to top)
+        for (int i = 0; i < s1.size(); i++) {
+            System.out.print(s1.get(i) + " ");
+        }
+
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Main q = new Main();
+
+        while (true) {
+            
+            System.out.println("1. Enqueue");
+            System.out.println("2. Dequeue");
+            System.out.println("3. Peek");
+            System.out.println("4. Display");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            int ch = sc.nextInt();
+
+            switch (ch) {
+                case 1:
+                    System.out.print("Enter value to enqueue: ");
+                    q.enqueue(sc.nextInt());
+                    break;
+
+                case 2:
+                    int removed = q.dequeue();
+                    if (removed == -1)
+                        System.out.println("Queue is empty");
+                    else
+                        System.out.println("Dequeued: " + removed);
+                    break;
+
+                case 3:
+                    int front = q.peek();
+                    if (front == -1)
+                        System.out.println("Queue is empty");
+                    else
+                        System.out.println("Front: " + front);
+                    break;
+
+                case 4:
+                    q.display();
+                    break;
+
+                case 5:
+                    System.out.println("Exit");
+                    return;
+
+                default:
+                    System.out.println("Invalid choice");
+            }
+        }
+    }
+}
+
+ Using collection
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Deque <Integer> x = new LinkedList<>();
+      x.addFirst(10);//front
+      x.addFirst(20);
+      x.addLast(30);
+      System.out.println(x);
+      x.removeFirst();
+      x.removeLast();
+      x.addFirst(40);
+      x.addLast(50);
+      System.out.println(x);
+      System.out.println(x.peekLast());
+      System.out.println(x.peekFirst());
+      
+      
+}
+}
+
+ Sorting of stack using stack operations
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Stack<Integer> s1 = new Stack<>();
+        Stack<Integer> s2 = new Stack<>();
+
+        for (int i = 0; i < n; i++) {
+            s1.push(sc.nextInt());
+        }
+
+        while (!s1.isEmpty()) {
+            int t = s1.pop();
+            while (!s2.isEmpty() && s2.peek() < t) {
+                s1.push(s2.pop());
+            }
+            s2.push(t); 
+        }
+
+        while (!s2.isEmpty()) {
+            System.out.print(s2.pop() + " ");
+        }
+    }
+}
+
+ 
+
+
+
