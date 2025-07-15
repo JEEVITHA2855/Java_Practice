@@ -1,4 +1,4 @@
-15 - 07 - 25 :: Tuesday     Binary Search Tree
+  Binary Search Tree
 
 import java.util.*;
 class Node{
