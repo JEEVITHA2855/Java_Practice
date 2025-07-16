@@ -1,0 +1,152 @@
+import java.util.*;
+class Node{
+    int data;
+    Node left,right;
+    Node(int x){
+        this.data = x;
+        this.left = null;
+        this.right = null;
+    }
+}
+    public class Main{
+        Node root ;
+        public void insert(int v){
+            root = insertval(root , v);
+        }
+        public Node insertval(Node root , int v){
+            if(root==null){
+                root= new Node(v);
+                return root;
+            }if(v<root.data){
+                root.left = insertval(root.left,v);
+            }else{
+                root.right = insertval(root.right,v);
+            }return root;
+        }
+        public void inorder(){
+            intrv(root);
+            System.out.println();
+        } 
+        public void intrv(Node root){
+            if(root != null){
+            intrv(root.left);
+            System.out.print(root.data);
+            intrv(root.right);
+            }
+        }
+        public void preorder (){
+            prtrv(root);
+            System.out.println();
+        }
+        public void prtrv(Node root){
+            if(root!=null){
+            System.out.print(root.data);
+            prtrv(root.left);
+            prtrv(root.right);
+            }
+        }
+        public void postorder(){
+            pstrv(root);
+            System.out.println();
+        }
+        public void pstrv(Node root){
+            if(root!=null){
+                pstrv(root.left);
+                pstrv(root.right);
+                System.out.print(root.data);
+            }
+        }
+        public Node del(Node root , int v){
+            if(root == null) return null;
+            if(v < root.data){
+                root.left = del(root.left,v);
+            }
+            else if(v > root.data){
+                root.right = del(root.right,v);
+            }else{
+                if(root.left == null){
+                    return root.right;
+                }if(root.right == null){
+                    return root.left;
+                }
+            // if a node has 2 child node 
+            root.data = min(root.right);
+            root.right = del(root.right,root.data);
+            }
+            return root;
+        }
+        public int min(Node root){
+            int min = root.data;
+            while(root.left != null){
+                min = root.left.data;
+                root = root.left;
+            } return root.data;
+        }
+
+       	public void level() {
+		if(root==null) {
+			return;
+		}
+		Queue<Node> x = new LinkedList<>();
+		x.offer(root);
+
+		while(!x.isEmpty()) {
+			Node temp = x.poll();
+			System.out.print(temp.data+" ");
+			if(temp.left!=null) {
+				x.offer(temp.left);
+			}
+			if(temp.right!=null) {
+				x.offer(temp.right);
+			}
+		}
+		System.out.println();
+	}
+	public boolean isbal() {
+		return height(root)!=-1;
+	}
+	public int height(Node root) {
+		if(root==null) return 0;
+		int l = height(root.left);
+		if(l==-1) return -1;
+		int r = height(root.right);
+		if(r==-1) return -1;
+		return Math.max(l,r) + 1;
+	}
+
+
+        public static void main (String[] args){
+            Main tree = new Main();
+            Scanner sc = new Scanner (System.in);
+            int n = sc.nextInt();
+            int[] a = new int[n];
+            for(int i=0;i<n;i++){
+                a[i]=sc.nextInt();
+                tree.insert(a[i]);
+            }
+            System.out.print("Inorder : ");
+            tree.inorder();
+            System.out.print("Postorder : ");
+            tree.postorder();
+            System.out.print("Preorder : ");
+            tree.preorder();
+            
+            System.out.println("Minimum value in the tree: " + tree.min(tree.root));
+
+            System.out.print("Enter value to delete: ");
+            int delVal = sc.nextInt();
+            tree.root = tree.del(tree.root, delVal);
+
+            System.out.println("After deleting " + delVal + ":");
+            System.out.print("Inorder: ");
+            tree.inorder();
+            System.out.print("Postorder: ");
+            tree.postorder();
+            System.out.print("Preorder: ");
+            tree.preorder();
+	System.out.println("Level order : ");
+	tree.level();
+	System.out.println("Balanced : "+tree.isbal());
+
+        }
+    }
