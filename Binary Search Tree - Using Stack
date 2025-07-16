@@ -1,0 +1,81 @@
+Binary Search Tree - Using Stack
+
+import java.util.*;
+class Node{
+    int data;
+    Node left;
+    Node right;
+    
+    public Node(int v){
+        this.data=v;
+        this.left=null;
+        this.right=null;
+    }
+}
+public class Main{
+    Node root;
+    public void insert(int v){
+        root = insval(root,v);
+    }
+    public Node insval(Node root, int v){
+        if(root == null) return new Node(v);
+        if(v<root.data){
+            root.left = insval(root.left , v);
+        }
+        else if (v>root.data){
+            root.right = insval(root.right , v);
+        }
+        return root;
+    }
+    public void inord(){
+        Stack <Node> x = new Stack<>();
+        Node temp = root;
+        while(temp!=null || !x.isEmpty()){
+            while(temp != null){
+                x.push(temp);
+                temp = temp.left;
+            }
+            temp = x.pop();
+            System.out.print(temp.data);
+            temp = temp.right;
+        }
+    }
+    public void preord(){
+        if (root == null){
+            return;
+        }
+        Stack <Node> x = new Stack<>();
+        x.push(root);
+        while(!x.isEmpty()){
+            Node temp = x.pop();
+            System.out.println(temp.data+" ");
+            if(temp.right != null){
+                x.push(temp.right);
+            }
+            if(temp.left != null){
+                x.push(temp.left);
+            }
+        }
+    }
+    public void postord(){
+        Stack<Node> x = new Stack<>();
+        Stack<Node> y = new Stack<>();
+        if(root == null){
+            return;
+        }
+        x.push(root);
+        while(!x.isEmpty()){
+            Node temp = x.pop();
+            y.push(temp);
+            if(root.left != null){
+                x.push(temp.left);
+            }
+            if(root.right != null){
+                x.push(temp.right);
+            }
+        }
+        while(!y.isEmpty()){
+            System.out.print(y.pop().data+" ");
+        }
+    }
+}
