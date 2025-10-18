@@ -2,7 +2,6 @@
 Longest substring with utmost k distinct characters using string.
 
 import java.util.*;
-
 public class Main {
     public static int sub(String s, int k) {
         if (s==null || s.length() == 0 || k==0) return 0;
